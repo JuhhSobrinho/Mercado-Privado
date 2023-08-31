@@ -1,5 +1,5 @@
 body {
-  background-color: #F4EFFA;
+  background-color: #f4effa;
   margin: 0;
   padding: 0 auto;
   width: 100%;
@@ -17,52 +17,140 @@ body {
 }
 /* Estiliza a trilha */
 ::-webkit-scrollbar-track {
-  background-color: #9B72CF; /* Cor da trilha */
+  background-color: #9b72cf; /* Cor da trilha */
 }
 
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
 
+/*  /////////////////////////////////////// Meucarrinho */
 
+#carrinho {
+  transition: 3s;
+  position: fixed;
+  right: -380px;
+  background-color: #24103c;
+  height: 100%;
+  width: 360px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 20px 2px rgb(0, 0, 0);
+  z-index: 2;
+}
 
-#header{
+#cabecalhoCarrinho {
+  transition: 2s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.x {
+  width: 20px;
+}
+
+.textoCarrinho {
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 18px;
+}
+
+#produtosCarrinho {
+  height: 65%;
+  overflow-y: scroll;
+}
+
+#removeItem {
+  width: 15px;
+  display: flex;
+  height: 20px;
+  z-index: 3;
+}
+
+.carrProduto {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid #ccdcff;
+}
+
+.carrImg {
+  width: 60px;
+  border-radius: 5px;
+  z-index: 1;
+}
+.carrDescricao {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.carrDados {
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 14px;
+  margin: 0;
+}
+
+#carrTipo,
+#carrMarca {
+  font-size: 10px;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/*  /////////////////////////////////////// Header/ menu e afins */
+
+#header {
   height: 60px;
+  width: 100%;
   background-color: #24103c;
   display: flex;
-  justify-content: center;
+  position: fixed;
+  justify-content: space-between;
   align-items: center;
+  z-index: 1;
+  box-shadow: 0px 0px 20px 1px #ccdcff;
 }
 
-.tituloMenu{
+.tituloMenu {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 30%;
+  margin-left: 30px;
 }
 
-.tituloDoSite{
+.tituloDoSite {
   font-size: 30px;
-  color: #F4EFFA;
+  color: #f4effa;
   font-family: monospace;
   margin-left: 15px;
-  cursor: pointer;
 }
 
-.tituloLogo{
+.tituloLogo {
   width: 50px;
-  cursor: pointer;
 }
 
-.carrinhoUser{
-  margin-left: 30%;
+.carrinhoUser {
+  margin-right: 30px;
 }
 
-.carUser{
+.carUser {
   width: 30px;
   margin: 10px;
-  cursor: pointer;
 }
 
-
-
+/*  /////////////////////////////////////// main/ parte principal */
 
 #main {
   display: flex;
@@ -70,9 +158,12 @@ body {
   align-items: center;
   justify-content: center;
   height: 800px;
+  padding-top: 60px;
 }
 
-.destaque{
+/*  /////////////////////////// destaque */
+
+.destaque {
   background-color: #ccdcff;
   height: 450px;
   width: 95%;
@@ -83,71 +174,82 @@ body {
   border-radius: 2px;
 }
 
-.roupaDestaque{
+.roupaDestaque {
   margin: 10px;
   display: flex;
-  align-items:flex-end;
+  align-items: flex-end;
   flex-direction: row;
 }
 
-.desDestaque{
+.desDestaque {
   margin-left: 40px;
+  margin-bottom: 20px;
   display: flex;
-  align-items:flex-start;
+  align-items: flex-start;
   flex-direction: column;
 }
 
-.roupaImgDestaque{
+.roupaImgDestaque {
+  transition: 1s;
   width: 280px;
   border-radius: 5px;
 }
 
-.destaDados{
+.roupaImgDestaque:hover {
+  transition: 0.5s;
+  box-shadow: 0px 0px 20px 1px #919cb5;
+  padding: 0px;
+  width: 290px;
+}
+
+.destaDados {
   color: rgb(50, 50, 50);
   margin: 0;
   font-size: 20px;
   font-family: monospace;
 }
 
-#destaNome, #destaPreco{
+#destaNome,
+#destaPreco {
   font-size: 50px;
 }
 
-#destaPreco{
+#destaPreco,
+#carrPreco {
   color: rgb(175, 90, 255);
 }
 
-.botao{
+.botao {
   transition: 0.4s;
-  background-color: #532B88;
+  background-color: #532b88;
   height: 50px;
-  color:#ffffff;
+  color: #ffffff;
   border-radius: 5px;
   border-style: solid;
   border-color: transparent;
   font-size: 20px;
-  cursor: pointer;
   width: 200px;
 }
 
-.botao:hover{
+.botao:hover {
   transition: 0.3s;
   background-color: #180b28;
   box-shadow: 0px 0px 20px 1px #d859ff;
 }
 
-.botaoCarr{
+.botaoCarr {
   display: flex;
   align-items: center;
-  margin-top: 20px;
 }
 
+#botaoCarDestaque {
+  margin-top: 30px;
+}
 
-
-
+/*  /////////////////////////// itens produtos */
 
 .itens {
-  background-color: #F4EFFA;
+  background-color: #f4effa;
   width: 95%;
   display: flex;
   align-items: center;
@@ -158,28 +260,48 @@ body {
 
 .roupa {
   margin: 20px;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .roupaImg {
+  transition: 1s;
   width: 250px;
   border-radius: 5px;
 }
 
-.descricao{
-  width: 250px;
+.roupaImg:hover {
+  transition: 0.5s;
+  box-shadow: 0px 0px 30px 1px black;
+  width: 260px;
 }
 
-.desDados{
+.descricaoBotao {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.descricao {
+  height: 100px;
+}
+
+.desDados {
   color: rgb(35, 35, 35);
   margin: 0;
   font-size: 12px;
   font-family: monospace;
 }
 
-#desNome, #desPreco{
+#desNome,
+#desPreco,
+#desPrecoTotal {
   font-size: 18px;
 }
 
-#desPreco{
+#desPreco,
+#desPrecoTotal {
   color: rgb(175, 90, 255);
 }

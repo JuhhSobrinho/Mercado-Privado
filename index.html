@@ -9,15 +9,51 @@
 </head>
 
 <body>
+  <section id="carrinho">
+    <div id="cabecalhoCarrinho">
+      <p class="textoCarrinho">Meu Carrinho</p>
+      <button id="closeCarrinho">
+        <img src="./assets/logo/x.svg" class="x" alt="fechar o carrinho">
+      </button>
+    </div>
+
+    <section id="produtosCarrinho">
+      <article class="carrProduto">
+
+
+        <img src="./assets/img/product-1.jpg" class="carrImg" alt="Image">
+        <button id="removeItem">
+          <img src="./assets/logo/removeItem.svg" alt="Remover item do carrinho">
+        </button>
+        <div class="carrDescricao">
+          <p class="carrDados" id="carrNome">Camisa Larga com Bolsos</p>
+          <p class="carrDados" id="carrPreco">R$: 000</p>
+          <p class="carrDados" id="carrTipo">Tipo: Masculino</p>
+          <p class="carrDados" id="carrMarca">Marca: Zara</p>
+        </div>
+      </article>
+    </section>
+
+    <div class="total">
+      <p class="textoCarrinho">Preço total </p>
+      <p class="desDados" id="desPrecoTotal"> R$:000</p>
+    </div>
+
+    <button class="botao" id="finalizarCompra">Finalizar compra</button>
+  </section>
+
+
   <header id="header">
     <div class="tituloMenu">
-      <img src="./assets/logo/bolsa-de-compras.png" class="tituloLogo" alt="logoDoSite">
+      <button><img src="./assets/logo/bolsa-de-compras.png" class="tituloLogo" alt="logoDoSite"></button>
       <span class="tituloDoSite">Mercado Privado</span>
     </div>
 
     <div class="carrinhoUser">
-      <img src="./assets/logo/carrinho-de-compras.png" class="carUser" alt="Carrinho de compras">
-      <img src="./assets/logo/do-utilizador (1).png" class="carUser" alt="Usuario ou historico de compras e afins">
+      <button id="abrirCarrinho"><img src="./assets/logo/carrinho.svg" class="carUser"
+          alt="Carrinho de compras"></button>
+      <button id="User"><img src="./assets/logo/user.svg" class="carUser"
+          alt="Usuario ou historico de compras e afins" /></button>
     </div>
   </header>
 
