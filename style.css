@@ -72,17 +72,31 @@ button {
 }
 
 .carrProduto {
+  transition: 2s;
   display: flex;
   flex-direction: row;
   padding: 10px;
   border-bottom: 1px solid #ccdcff;
+  justify-content: space-between;
+}
+
+.imgComDescricao{
+  display: flex;
+  flex-direction: row;
 }
 
 .carrImg {
+  transition: 0.5s;
   width: 60px;
   border-radius: 5px;
-  z-index: 1;
 }
+
+.carrImg:hover{
+  transition: 0.2s;
+  box-shadow: 0px 0px 10px 2px rgba(202, 202, 202, 0.715);
+  width: 62px;
+}
+
 .carrDescricao {
   display: flex;
   flex-direction: column;
@@ -107,6 +121,31 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.carrinhoUser {
+  margin-right: 30px;
+}
+
+.carUser {
+  width: 30px;
+  margin: 10px;
+}
+
+.numbProdutos{
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.numbDados{
+  color: white;
+  font-size: 18px;
+}
+
+#numbPecas{
+  color: rgb(175, 90, 255);
+  font-weight: 700;
 }
 
 /*  /////////////////////////////////////// Header/ menu e afins */
@@ -141,14 +180,6 @@ button {
   width: 50px;
 }
 
-.carrinhoUser {
-  margin-right: 30px;
-}
-
-.carUser {
-  width: 30px;
-  margin: 10px;
-}
 
 /*  /////////////////////////////////////// main/ parte principal */
 
