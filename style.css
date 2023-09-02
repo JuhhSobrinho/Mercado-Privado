@@ -80,7 +80,7 @@ button {
   justify-content: space-between;
 }
 
-.imgComDescricao{
+.imgComDescricao {
   display: flex;
   flex-direction: row;
 }
@@ -91,7 +91,7 @@ button {
   border-radius: 5px;
 }
 
-.carrImg:hover{
+.carrImg:hover {
   transition: 0.2s;
   box-shadow: 0px 0px 10px 2px rgba(202, 202, 202, 0.715);
   width: 62px;
@@ -124,7 +124,47 @@ button {
 }
 
 .carrinhoUser {
+  display: flex;
+  flex-direction: row;
   margin-right: 30px;
+}
+
+.pesquisa{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+
+.lupaText{
+  height: 25px;
+  transition: 1s;
+  background-color: transparent;
+  border: 0;
+  padding: 5px;
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #ccdcff;
+  outline: none;
+}
+
+.lupaText:hover{
+  transition: 0.5s;
+  padding: 10px;
+  margin-left: 5px;
+  border-bottom: 1px solid #d859ff;
+}
+
+.lupaText::placeholder,
+.lupaText::placeholder {
+  color: #ccdcff;
+}
+
+.lupaIcon{
+  margin: 5px;
+  cursor: pointer;
 }
 
 .carUser {
@@ -132,18 +172,18 @@ button {
   margin: 10px;
 }
 
-.numbProdutos{
+.numbProdutos {
   display: flex;
   flex-direction: row;
   align-items: end;
 }
 
-.numbDados{
+.numbDados {
   color: white;
   font-size: 18px;
 }
 
-#numbPecas{
+#numbPecas {
   color: rgb(175, 90, 255);
   font-weight: 700;
 }
@@ -180,7 +220,6 @@ button {
   width: 50px;
 }
 
-
 /*  /////////////////////////////////////// main/ parte principal */
 
 #main {
@@ -203,6 +242,7 @@ button {
   justify-content: center;
   flex-wrap: wrap;
   border-radius: 2px;
+  overflow: hidden;
 }
 
 .roupaDestaque {
@@ -226,7 +266,7 @@ button {
   border-radius: 5px;
 }
 
-.roupaImgDestaque:hover {
+.roupaDestaque:hover .roupaImgDestaque {
   transition: 0.5s;
   box-shadow: 0px 0px 20px 1px #919cb5;
   padding: 0px;
@@ -298,16 +338,16 @@ button {
   flex-direction: column;
 }
 
+.roupa:hover .roupaImg {
+  transition: 0.5s;
+  box-shadow: 0px 0px 30px 1px black;
+  width: 260px;
+}
+
 .roupaImg {
   transition: 1s;
   width: 250px;
   border-radius: 5px;
-}
-
-.roupaImg:hover {
-  transition: 0.5s;
-  box-shadow: 0px 0px 30px 1px black;
-  width: 260px;
 }
 
 .descricaoBotao {

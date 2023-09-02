@@ -2,6 +2,8 @@ import './style.css';
 import { carregarBancoDeDados } from './model/model';
 import { meuCarrinho } from './src/meuCarrinho';
 import { adicionarAoCarrinho } from './src/meuCarrinho';
+import { pesquisaResultado } from './src/pesquisa';
+import { renderizarCarrinho } from './src/meuCarrinho';
 import javascriptLogo from './javascript.svg';
 import viteLogo from '/vite.svg';
 import { setupCounter } from './counter.js';
@@ -87,13 +89,12 @@ export function processBDData(bd) {
 
   const botaoAddCar = document.querySelector(`#addCarrinho${element.id}`);
   botaoAddCar.addEventListener('click', () => {
-    console.log(element.id);
     adicionarAoCarrinho(element.id, bd);
   });
 
  }
 
-
   meuCarrinho(bd);
+  pesquisaResultado(bd);
 
 }

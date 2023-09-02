@@ -8,6 +8,8 @@
   <title>Mercado Privado</title>
 </head>
 
+
+
 <body>
   <section id="carrinho">
     <div id="cabecalhoCarrinho">
@@ -18,16 +20,17 @@
     </div>
 
     <section id="produtosCarrinho">
-      
+
     </section>
 
     <div class="total">
       <p class="textoCarrinho">Preço total </p>
-      <p class="desDados" id="desPrecoTotal"> R$:000</p>
+      <p class="desDados" id="desPrecoTotal"> R$: 00</p>
     </div>
 
-    <button class="botao" id="finalizarCompra">Finalizar compra</button>
+    <button class="botao" id="finalizarCompra"><a href="./checkout.html">Finalizar compras</a></button><a></a>
   </section>
+
 
 
   <header id="header">
@@ -37,12 +40,17 @@
     </div>
 
     <div class="carrinhoUser">
+      <div class="pesquisa">
+        <img src="./assets/logo/lupa.svg" class="lupaIcon" alt="icone de pesquisa">
+        <input class="lupaText" type="text" placeholder="Pix po pai">
+      </div>
       <button id="abrirCarrinho"><img src="./assets/logo/carrinho.svg" class="carUser"
           alt="Carrinho de compras"></button>
       <button id="User"><img src="./assets/logo/user.svg" class="carUser"
           alt="Usuario ou historico de compras e afins" /></button>
     </div>
   </header>
+
 
 
   <main id="main">
@@ -53,5 +61,7 @@
   </main>
   <script type="module" src="/main.js"></script>
 </body>
+
+
 
 </html>

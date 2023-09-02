@@ -1,11 +1,8 @@
-import { carregarBancoDeDados } from '../model/model';
+import { seTLocarStorage, geTLocalStorage } from "../model/model";
 
-carregarBancoDeDados()
-  .then(bd => {
-    renderizarCarrinho(bd);
-  });
 
-const idsProdutoCarrinhoComQuantidade = {};
+////////// (??) operador de coalescência nula, caso GetLocalStorage seja nulo/sla primeir vez que abre o site, se sim ele ira executar como {}
+const idsProdutoCarrinhoComQuantidade = geTLocalStorage("carrinho") ?? {};
 
 export function meuCarrinho(bd) {
     const abrirCarrinho = document.querySelector('#abrirCarrinho');
@@ -28,28 +25,43 @@ export function meuCarrinho(bd) {
     })
 
     console.log("botão do carrinho");
+    renderizarCarrinho(bd) 
 
 }
 
 /////////////////////// Aumenta numero no ***carrinho***, ***diminui*** e ***atualiza*** o nuemro que mostra no card
-function removerDoCarrinho(idProduto) {
+function removerDoCarrinho(idProduto, bd) {
     delete idsProdutoCarrinhoComQuantidade[idProduto];
-    renderizarCarrinho();
+    console.log("bdRemove", bd);
+    atualizarPrecoCarrinho(idProduto, bd);
+    renderizarCarrinho(bd);
+    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 }
 
-function incrementarQuantidadeProduto(idProduto) {
+function incrementarQuantidadeProduto(idProduto, bd) {
     idsProdutoCarrinhoComQuantidade[idProduto]++;
+    console.log("Incrementa", bd);
+    atualizarPrecoCarrinho(idProduto, bd);
     atualizarInfoQuantidade(idProduto);
+    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 };
 
-function decrementarQuantidadeProduto(idProduto) {
+function decrementarQuantidadeProduto(idProduto, bd) {
     idsProdutoCarrinhoComQuantidade[idProduto]--;
+    console.log("Decrementa", bd);
+    atualizarPrecoCarrinho(idProduto, bd);
     atualizarInfoQuantidade(idProduto);
+    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 };
 
 function atualizarInfoQuantidade(idProduto) {
     const quantidadeDeTalItem = document.querySelector(`#numbPecas${idProduto}`);
+    console.log("isso", idsProdutoCarrinhoComQuantidade[idProduto]);
+    console.log("documento",document);
+    console.log("id", idProduto);
+    console.log("o html", quantidadeDeTalItem);
     quantidadeDeTalItem.innerHTML = idsProdutoCarrinhoComQuantidade[idProduto];
+    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 }
 /////////////////////// 
 
@@ -64,6 +76,8 @@ function desenharProdutoCarrinho(idProduto, bd) {
             return 'masculino';
         }
     }
+    console.log("bdDesenhar");
+    console.log(bd);
 
     // find(percorre o banco e verifica se o idProduto, cujo é enviado pelo main, é igual a algum id dentro de BD)
     const produto = bd.find((produto) => produto.id === idProduto);
@@ -101,18 +115,18 @@ function desenharProdutoCarrinho(idProduto, bd) {
     const botaoMenos = document.querySelector(`#botaoMenos${produto.id}`);
 
     botaoRemoveItem.addEventListener("click", () => {
-        removerDoCarrinho(idProduto);
+        removerDoCarrinho(idProduto, bd);
     });
 
     botaoAdicionar.addEventListener("click", () => {
-        incrementarQuantidadeProduto(`${produto.id}`);
+        incrementarQuantidadeProduto(idProduto, bd);
     });
 
     botaoMenos.addEventListener("click", () => {
-        decrementarQuantidadeProduto(`${produto.id}`);
+        decrementarQuantidadeProduto(idProduto, bd);
 
         if (idsProdutoCarrinhoComQuantidade[idProduto] === 0) {
-            removerDoCarrinho(idProduto);
+            removerDoCarrinho(idProduto, bd);
             return;
         }
         console.log(idsProdutoCarrinhoComQuantidade[idProduto]);
@@ -123,9 +137,11 @@ function desenharProdutoCarrinho(idProduto, bd) {
 }
 
 
-function renderizarCarrinho(bd) {
+export function renderizarCarrinho(bd) {
     const containerProdutosCarrinho = document.querySelector('#produtosCarrinho');
     containerProdutosCarrinho.innerHTML = ``;
+    console.log("renderiza");
+    console.log(bd);
 
     console.log(idsProdutoCarrinhoComQuantidade);
 
@@ -138,10 +154,27 @@ function renderizarCarrinho(bd) {
 
 }
 
+function atualizarPrecoCarrinho(idProduto, bd){
+    const precoCarrinho = document.querySelector('#desPrecoTotal');
+    let precoTotal = 0;
+    console.log("id", idProduto);
+    console.log("banquinho", bd);
+    console.log("idsProdutoCarrinhoComQuantidade",idsProdutoCarrinhoComQuantidade);
+
+    for (const ads in idsProdutoCarrinhoComQuantidade) {
+        precoTotal += bd.find((p) => p.id === ads).preco *  idsProdutoCarrinhoComQuantidade[ads];
+    }
+
+    precoCarrinho.innerHTML =` R$: ${precoTotal}`;
+}
+
+
+
 
 export function adicionarAoCarrinho(idProduto, bd) {
+    renderizarCarrinho(bd)
     if (idProduto in idsProdutoCarrinhoComQuantidade) {
-        incrementarQuantidadeProduto(idProduto);
+        incrementarQuantidadeProduto(idProduto, bd);
 
         return; // finaliza o processo e stop a função, assim não executando o codigo fora do if
     }
@@ -149,7 +182,7 @@ export function adicionarAoCarrinho(idProduto, bd) {
 
 
     idsProdutoCarrinhoComQuantidade[idProduto] = 1;
-
+    atualizarPrecoCarrinho(idProduto, bd);
     desenharProdutoCarrinho(idProduto, bd); // Obtém o botão do objeto retornado
-
+    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 }
