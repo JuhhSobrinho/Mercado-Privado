@@ -17,7 +17,8 @@
 
     <header id="header">
         <div class="tituloMenu">
-            <button><img src="./assets/logo/bolsa-de-compras.png" class="tituloLogo" alt="logoDoSite"></button>
+            <button id="paginaInicial"><img src="./assets/logo/bolsa-de-compras.png" class="tituloLogo"
+                    alt="logoDoSite"></button>
             <span class="tituloDoSite">Mercado Privado</span>
         </div>
 
@@ -25,58 +26,67 @@
 
 
 
-    <main id="mainCheck">
-        <form class="seusDados">
-            <section class="Usuario">
-                <span class="tituloForms">Seus Dados</span>
-                <div class="usuarioDados">
-                    <input class="textDados" type="text" id="nome" placeholder="loki Deus Da mMntira" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="email" id="email" placeholder="FilhoDeOdin@gmail.com" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="tel" id="tel" placeholder="(12) 123456789" />
-                </div>
-            </section>
-        </form>
+    <main id="main">
+        <section id="forms">
+            <form class="seusDados">
+                <section class="Usuario">
+                    <span class="tituloForms">Seus Dados</span>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="text" id="nome" placeholder="loki Deus Da mMntira" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="email" id="email" placeholder="FilhoDeOdin@gmail.com" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="tel" id="tel" placeholder="(12) 123456789" />
+                    </div>
+                </section>
+            </form>
 
 
-        <form class="seusDados">
-            <section class="Usuario">
-                <span class="tituloForms">Pagamento e entrega</span>
-                <div class="usuarioDados">
-                    <input class="textDados" type="numb" id="numberCard" placeholder="1234 1234 1234 1234" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="numb" id="cvc" placeholder="123" />
-                    <input class="textDados" type="numb" id="cataCard" placeholder="10/04" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="numb" id="cep" placeholder="12345678" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="text" id="endereco" placeholder="Rua do lado de outra rua" />
-                </div>
-                <div class="usuarioDados">
-                    <input class="textDados" type="number" id="numbEnder" placeholder="123" />
-                    <input class="textDados" type="text" id="complemEnder" placeholder="555" />
-                </div>
-            </section>
-            
-        </form>
+            <form class="seusDados">
+                <section class="Usuario">
+                    <span class="tituloForms">Pagamento e entrega</span>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="numb" id="numberCard" placeholder="1234 1234 1234 1234" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="numb" id="cvc" placeholder="123" />
+                        <input class="textDados" type="numb" id="cataCard" placeholder="10/04" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="numb" id="cep" placeholder="12345678" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="text" id="endereco" placeholder="Rua do lado de outra rua" />
+                    </div>
+                    <div class="usuarioDados">
+                        <input class="textDados" type="number" id="numbEnder" placeholder="123" />
+                        <input class="textDados" type="text" id="complemEnder" placeholder="555" />
+                    </div>
+                </section>
+
+            </form>
 
 
-        <form class="seusDados">
-            <section class="Usuario">
-                <span class="tituloForms">Produtos</span>
-                <div class="usuarioDados">
-                    
-                </div>
-            </section>
-            
-        </form>
+            <form class="seusDados">
+                <section class="Usuario">
+                    <span class="tituloForms">Produtos</span>
+                    <div class="usuarioDados" id="itensDoCarrinho">
+
+                    </div>
+                    <div class="total">
+                        <p class="textoCarrinho">Preço total </p>
+                        <p class="desDados" id="desPrecoTotal"> R$: 00</p>
+                    </div>
+                </section>
+
+            </form>
+        </section>
+
+        <button class="botao" id="compradoHistorico">Finalizar a Compra</button>
     </main>
+    <script type="module" src="./src//checkout.js"></script>
 </body>
 
 

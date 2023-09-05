@@ -1,5 +1,5 @@
 body {
-  background-color: #f4effa;
+  background-color: #e7dcec;
   margin: 0;
   padding: 0 auto;
   width: 100%;
@@ -55,14 +55,19 @@ button {
   width: 50px;
 }
 
-#mainCheck {
+#forms {
   padding-top: 60px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #9633ff;
   width: 100%;
-  height: 100vh;
+}
+
+#main{
+  background-color: #e7dcec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .seusDados {
@@ -72,7 +77,7 @@ button {
   border-radius: 15px;
   width: 30%;
   overflow: hidden;
-  box-shadow: 0px 0px 25px 2px rgb(42, 42, 42);
+  box-shadow: 0px 0px 20px 1px #ccdcff;
 }
 
 .tituloForms {
@@ -97,11 +102,11 @@ button {
 .textDados {
   width: 250px;
   height: 15px;
-  transition: 1s;
+  transition: 0.5s;
   background-color: transparent;
   border-radius: 30px;
   border-color: transparent;
-  box-shadow: 0px 0px 25px 2px #ccdcff;
+  box-shadow: 0px 0px 10px 1px #9a72cf8a;
   padding: 10px;
   font-family: monospace;
   font-size: 16px;
@@ -109,9 +114,8 @@ button {
 }
 
 .textDados:hover {
-  transition: 0.5s;
-  padding: 8px;
-  box-shadow: 0px 0px 20px 2px #24103c;
+  transition: 0.2s;
+  box-shadow: 0px 0px 20px 2px #ccdcff;
 }
 
 .textDados::placeholder,
@@ -132,4 +136,99 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   appearance: none;
+}
+
+
+#itensDoCarrinho{
+  height: 320px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.carrProduto{
+  transition: 2s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #ccdcff;
+}
+
+.imgComDescricao {
+  display: flex;
+  flex-direction: row;
+}
+
+.carrImg {
+  transition: 0.5s;
+  width: 60px;
+  border-radius: 5px;
+}
+
+.carrProduto:hover .carrImg{
+  transition: 0.2s;
+  box-shadow: 0px 0px 20px 1px #9b72cf;
+  width: 62px;
+}
+
+.carrDescricao {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.carrDados {
+  color: #000000;
+  font-family: monospace;
+  font-size: 14px;
+  margin: 0;
+}
+.numbProdutos {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+.numbDados {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+}
+
+#numbPecas, #desPrecoTotal, #carrPreco {
+  color: rgb(175, 90, 255);
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.total {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.textoCarrinho {
+  color: #000000;
+  font-family: monospace;
+  font-size: 18px;
+}
+
+.botao {
+  transition: 0.4s;
+  background-color: #532b88;
+  height: 50px;
+  color: #ffffff;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: transparent;
+  font-size: 20px;
+  width: 200px;
+}
+
+.botao:hover {
+  transition: 0.3s;
+  background-color: #180b28;
+  box-shadow: 0px 0px 20px 1px #d859ff;
 }

@@ -81,18 +81,17 @@ export function processBDData(bd) {
       </div>
       </div>`;
 
-      sectionRoupa.innerHTML += itensRoupahtml;
+    sectionRoupa.innerHTML += itensRoupahtml;
   }
 
- for (let i = 0; i < bd.length; i++) {
-  const element = bd[i];
+  for (let i = 0; i < bd.length; i++) {
+    const element = bd[i];
 
-  const botaoAddCar = document.querySelector(`#addCarrinho${element.id}`);
-  botaoAddCar.addEventListener('click', () => {
-    adicionarAoCarrinho(element.id, bd);
-  });
-
- }
+    const botaoAddCar = document.querySelector(`#addCarrinho${element.id}`);
+    botaoAddCar.addEventListener('click', () => {
+      adicionarAoCarrinho(element.id, bd);
+    });
+  }
 
   meuCarrinho(bd);
   pesquisaResultado(bd);

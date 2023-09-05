@@ -1,50 +1,56 @@
+import { carregarBancoDeDados } from "../model/model";
 import { seTLocarStorage, geTLocalStorage } from "../model/model";
 
-
-////////// (??) operador de coalescência nula, caso GetLocalStorage seja nulo/sla primeir vez que abre o site, se sim ele ira executar como {}
 const idsProdutoCarrinhoComQuantidade = geTLocalStorage("carrinho") ?? {};
+const Carrinho_Vazio = {};
 
-export function meuCarrinho(bd) {
-    const abrirCarrinho = document.querySelector('#abrirCarrinho');
-    const closeCarrinho = document.querySelector('#closeCarrinho');
-    const finalizaCompra = document.querySelector('#finalizarCompra');
-
-    const carrinho = document.querySelector('#carrinho');
+carregarBancoDeDados()
+    .then(bd => {
+        compraFinal(bd);
+    });
 
 
-    abrirCarrinho.addEventListener('click', () => {
-        carrinho.style.transition = '1s';
-        carrinho.style.background = '#24103c';
-        carrinho.style.right = '0';
+function compraFinal(bd) {
+    console.log("bd da compra", bd);
 
-    })
-
-    closeCarrinho.addEventListener('click', () => {
-        carrinho.style.transition = '2s';
-        carrinho.style.background = 'transparent';
-        carrinho.style.right = '-380px';
-    })
-
-    finalizaCompra.addEventListener('click', () => {
-        window.location.href =  "../checkout.html";
+    const header = document.querySelector('#paginaInicial');
+    header.addEventListener("click", () => {
+        window.location.href = "./index.html";
     })
 
 
-    console.log("botão do carrinho");
+    const compraHistorico = document.querySelector('#compradoHistorico');
+    compraHistorico.addEventListener('click', () => {
+        console.log("comprado");
+
+        
+        const carrinhoAtual = JSON.parse(localStorage.getItem("carrinho"));
+        seTLocarStorage("historico", carrinhoAtual);
+
+
+        for (const ads in idsProdutoCarrinhoComQuantidade) {
+            console.log(ads, idsProdutoCarrinhoComQuantidade);
+            delete idsProdutoCarrinhoComQuantidade[ads];
+        }
+        seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
+    
+        window.location.href = "./index.html";
+    })
+
     renderizarCarrinho(bd);
-
 }
+
 
 /////////////////////// Aumenta numero no ***carrinho***, ***diminui*** e ***atualiza*** o nuemro que mostra no card
-export function removerDoCarrinho(idProduto, bd) {
+
+function removerDoCarrinho(idProduto, bd) {
     delete idsProdutoCarrinhoComQuantidade[idProduto];
     console.log("bdRemove", bd);
-    atualizarPrecoCarrinho(idProduto, bd);
-    renderizarCarrinho(bd);
     seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
+    renderizarCarrinho(bd);
+    atualizarPrecoCarrinho(idProduto, bd);
 }
-
-export function incrementarQuantidadeProduto(idProduto, bd) {
+function incrementarQuantidadeProduto(idProduto, bd) {
     idsProdutoCarrinhoComQuantidade[idProduto]++;
     console.log("Incrementa", bd);
     atualizarPrecoCarrinho(idProduto, bd);
@@ -52,7 +58,7 @@ export function incrementarQuantidadeProduto(idProduto, bd) {
     seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 };
 
-export function decrementarQuantidadeProduto(idProduto, bd) {
+function decrementarQuantidadeProduto(idProduto, bd) {
     idsProdutoCarrinhoComQuantidade[idProduto]--;
     console.log("Decrementa", bd);
     atualizarPrecoCarrinho(idProduto, bd);
@@ -60,20 +66,55 @@ export function decrementarQuantidadeProduto(idProduto, bd) {
     seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 };
 
-export function atualizarInfoQuantidade(idProduto) {
+
+
+////////////////////////////////////////////////////////////
+function atualizarInfoQuantidade(idProduto) {
     const quantidadeDeTalItem = document.querySelector(`#numbPecas${idProduto}`);
     console.log("isso", idsProdutoCarrinhoComQuantidade[idProduto]);
-    console.log("documento",document);
+    console.log("documento", document);
     console.log("id", idProduto);
     console.log("o html", quantidadeDeTalItem);
     quantidadeDeTalItem.innerHTML = idsProdutoCarrinhoComQuantidade[idProduto];
     seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 }
-/////////////////////// 
+
+function atualizarPrecoCarrinho(idProduto, bd) {
+    const precoCarrinho = document.querySelector('#desPrecoTotal');
+    let precoTotal = 0;
+    console.log("id", idProduto);
+    console.log("banquinho", bd);
+    console.log("idsProdutoCarrinhoComQuantidade", idsProdutoCarrinhoComQuantidade);
+
+    for (const ads in idsProdutoCarrinhoComQuantidade) {
+        precoTotal += bd.find((p) => p.id === ads).preco * idsProdutoCarrinhoComQuantidade[ads];
+    }
+
+    precoCarrinho.innerHTML = ` R$: ${precoTotal}`;
+}
+
+function renderizarCarrinho(bd) {
+    const containerProdutosCarrinho = document.querySelector('#itensDoCarrinho');
+    containerProdutosCarrinho.innerHTML = ``;
+    console.log("renderiza");
+    console.log(bd);
+
+    console.log(idsProdutoCarrinhoComQuantidade);
+
+
+    for (const ids in idsProdutoCarrinhoComQuantidade) {
+        console.log(idsProdutoCarrinhoComQuantidade);
+        desenharProdutoCarrinho(ids, bd);
+        atualizarPrecoCarrinho(ids, bd);
+    }
+
+
+}
 
 
 
 
+//////////////////////////////////////////////////////////
 function desenharProdutoCarrinho(idProduto, bd) {
     function tipo(tipo) {
         if (tipo) {
@@ -87,7 +128,7 @@ function desenharProdutoCarrinho(idProduto, bd) {
 
     // find(percorre o banco e verifica se o idProduto, cujo é enviado pelo main, é igual a algum id dentro de BD)
     const produto = bd.find((produto) => produto.id === idProduto);
-    const containerProdutosCarrinho = document.querySelector('#produtosCarrinho');
+    const containerProdutosCarrinho = document.querySelector('#itensDoCarrinho');
 
     ///////////////////     CRIANDO HTML no js ao invez de tacar texto no html e o baguio precisar desmontar e montar
     const elementoArticleHTML = document.createElement("article");  //<artcle></article>
@@ -97,7 +138,7 @@ function desenharProdutoCarrinho(idProduto, bd) {
         <div class="imgComDescricao">
             <img src="./assets/img/${produto.imagem}.jpg" class="carrImg" alt="Image">
             <button id="removeItem${produto.id}">
-                <img src="./assets/logo/removeItem.svg" alt="Image">
+                <img src="./assets/logo/removeItemBlack.svg" alt="Image">
             </button>
             <div class="carrDescricao">
                 <p class="carrDados" id="carrNome">${produto.nome}</p>
@@ -122,6 +163,7 @@ function desenharProdutoCarrinho(idProduto, bd) {
 
     botaoRemoveItem.addEventListener("click", () => {
         removerDoCarrinho(idProduto, bd);
+
     });
 
     botaoAdicionar.addEventListener("click", () => {
@@ -140,56 +182,4 @@ function desenharProdutoCarrinho(idProduto, bd) {
 
     return;
 
-}
-
-
-export function renderizarCarrinho(bd) {
-    const containerProdutosCarrinho = document.querySelector('#produtosCarrinho');
-    containerProdutosCarrinho.innerHTML = ``;
-    console.log("renderiza");
-    console.log(bd);
-
-    console.log(idsProdutoCarrinhoComQuantidade);
-
-
-    for (const ids in idsProdutoCarrinhoComQuantidade) {
-        console.log(idsProdutoCarrinhoComQuantidade);
-        desenharProdutoCarrinho(ids, bd);
-        atualizarPrecoCarrinho(ids, bd)
-    }
-
-
-}
-
-export function atualizarPrecoCarrinho(idProduto, bd){
-    const precoCarrinho = document.querySelector('#desPrecoTotal');
-    let precoTotal = 0;
-    console.log("id", idProduto);
-    console.log("banquinho", bd);
-    console.log("idsProdutoCarrinhoComQuantidade",idsProdutoCarrinhoComQuantidade);
-
-    for (const ads in idsProdutoCarrinhoComQuantidade) {
-        precoTotal += bd.find((p) => p.id === ads).preco *  idsProdutoCarrinhoComQuantidade[ads];
-    }
-
-    precoCarrinho.innerHTML =` R$: ${precoTotal}`;
-}
-
-
-
-
-export function adicionarAoCarrinho(idProduto, bd) {
-    renderizarCarrinho(bd)
-    if (idProduto in idsProdutoCarrinhoComQuantidade) {
-        incrementarQuantidadeProduto(idProduto, bd);
-
-        return; // finaliza o processo e stop a função, assim não executando o codigo fora do if
-    }
-
-
-
-    idsProdutoCarrinhoComQuantidade[idProduto] = 1;
-    atualizarPrecoCarrinho(idProduto, bd);
-    desenharProdutoCarrinho(idProduto, bd); // Obtém o botão do objeto retornado
-    seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
 }
