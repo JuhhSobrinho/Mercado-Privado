@@ -1,5 +1,5 @@
 import './style.css';
-import { carregarBancoDeDados } from './model/model';
+import { carregarBancoDeDados } from './public/model/model';
 import { meuCarrinho, adicionarAoCarrinho , finalizaComp} from './src/meuCarrinho';
 import { meuHistorico } from './src/meuHistorico';
 import { pesquisaResultado } from './src/pesquisa';
@@ -7,7 +7,7 @@ import { pesquisaResultado } from './src/pesquisa';
 //      declarando a onde vou colocar as informações, que no caso é roupas vendendo e a roupa em destaque
 const sectionRoupa = document.querySelector('.itens');
 const sectionDestaque = document.querySelector('.destaque');
-
+const mainIndex = document.querySelector('#main');
 // /////////////////////////// nome já diz carrega o banco
 carregarBancoDeDados()
   .then(bd => {
@@ -19,6 +19,9 @@ carregarBancoDeDados()
 
 //      aqui seria a main da para sacou ? onde tem o processo dos dados e onde são usados e puxados os dados do banco
 export function main(bd) {
+  console.log(sectionRoupa);
+  mainIndex.style.transition = '0.3s';
+  mainIndex.style.opacity = '1';
 
 
   console.log(bd);
