@@ -64,7 +64,11 @@ button {
 }
 
 #main{
+  opacity: 0;
+  top: 0;
+  position: fixed;
   background-color: #e7dcec;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

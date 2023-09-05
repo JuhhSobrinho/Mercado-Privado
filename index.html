@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./style.css">
   <link rel="icon" type="image/svg+xml" href="./assets/logo/bolsa-de-compras.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mercado Privado</title>
@@ -11,7 +12,7 @@
 
 
 <body>
-  <section id="carrinho">
+  <section class="carrinhoHistorico" id="carrinho">
     <div id="cabecalhoCarrinho">
       <p class="textoCarrinho">Meu Carrinho</p>
       <button id="closeCarrinho">
@@ -19,7 +20,7 @@
       </button>
     </div>
 
-    <section id="produtosCarrinho">
+    <section class="produtosCarrinho" id="produtosCarrinho">
 
     </section>
 
@@ -33,6 +34,32 @@
 
 
 
+
+  <section class="carrinhoHistorico" id="sectionHistorico">
+    <div id="cabecalhoCarrinho">
+      <p class="textoCarrinho">Ultima Compra</p>
+      <button id="closeHistorico">
+        <img src="./assets/logo/x.svg" class="x" alt="fechar o carrinho">
+      </button>
+    </div>
+
+
+
+    <section class="produtosCarrinho" id="produtosHistorico">
+
+    </section>
+
+    <div class="total">
+      <p class="textoCarrinho">Preço total </p>
+      <p class="desDados" id="desPrecoTotalHistorico"> R$: 00</p>
+    </div>
+  </section>
+
+
+
+
+
+
   <header id="header">
     <div class="tituloMenu">
       <button><img src="./assets/logo/bolsa-de-compras.png" class="tituloLogo" alt="logoDoSite"></button>
@@ -42,11 +69,11 @@
     <div class="carrinhoUser">
       <div class="pesquisa">
         <img src="./assets/logo/lupa.svg" class="lupaIcon" alt="icone de pesquisa">
-        <input class="lupaText" type="text" placeholder="Pix po pai">
+        <input class="lupaText" type="text" placeholder="Nome da Peça de roupa">
       </div>
       <button id="abrirCarrinho"><img src="./assets/logo/carrinho.svg" class="carUser"
           alt="Carrinho de compras"></button>
-      <button id="User"><img src="./assets/logo/user.svg" class="carUser"
+      <button id="botaoHistorico"><img src="./assets/logo/user.svg" class="carUser"
           alt="Usuario ou historico de compras e afins" /></button>
     </div>
   </header>

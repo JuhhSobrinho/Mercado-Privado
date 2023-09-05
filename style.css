@@ -28,7 +28,7 @@ button {
 
 /*  /////////////////////////////////////// Meucarrinho */
 
-#carrinho {
+.carrinhoHistorico {
   transition: 3s;
   position: fixed;
   right: -380px;
@@ -59,9 +59,13 @@ button {
   font-size: 18px;
 }
 
-#produtosCarrinho {
+.produtosCarrinho {
   height: 65%;
   overflow-y: scroll;
+}
+
+#produtosHistorico{
+  height: 80%;
 }
 
 #removeItem {
@@ -223,12 +227,18 @@ button {
 /*  /////////////////////////////////////// main/ parte principal */
 
 #main {
+  opacity: 0;
+  top: 0px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   height: 800px;
   padding-top: 60px;
+}
+
+.transparent-content {
+  background-color: transparent;
 }
 
 /*  /////////////////////////// destaque */
@@ -368,11 +378,13 @@ button {
 
 #desNome,
 #desPreco,
-#desPrecoTotal {
+#desPrecoTotal,
+#desPrecoTotalHistorico {
   font-size: 18px;
 }
 
 #desPreco,
-#desPrecoTotal {
+#desPrecoTotal,
+#desPrecoTotalHistorico {
   color: rgb(175, 90, 255);
 }

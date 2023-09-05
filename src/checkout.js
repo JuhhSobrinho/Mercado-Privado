@@ -11,6 +11,8 @@ carregarBancoDeDados()
 
 
 function compraFinal(bd) {
+
+
     console.log("bd da compra", bd);
 
     const header = document.querySelector('#paginaInicial');
@@ -20,6 +22,11 @@ function compraFinal(bd) {
 
 
     const compraHistorico = document.querySelector('#compradoHistorico');
+    const main = document.querySelector('#main');
+
+    main.style.transition = "0.2s";
+    main.style.opacity = "1";
+
     compraHistorico.addEventListener('click', () => {
         console.log("comprado");
 
@@ -34,7 +41,12 @@ function compraFinal(bd) {
         }
         seTLocarStorage("carrinho", idsProdutoCarrinhoComQuantidade);
     
-        window.location.href = "./index.html";
+        main.style.transition = "0.5s";
+        main.style.opacity = "0";
+        setTimeout(() => {
+
+            window.location.href = "../index.html";
+        }, 1500);
     })
 
     renderizarCarrinho(bd);

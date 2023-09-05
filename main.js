@@ -1,12 +1,8 @@
 import './style.css';
 import { carregarBancoDeDados } from './model/model';
-import { meuCarrinho } from './src/meuCarrinho';
-import { adicionarAoCarrinho } from './src/meuCarrinho';
+import { meuCarrinho, adicionarAoCarrinho , finalizaComp} from './src/meuCarrinho';
+import { meuHistorico } from './src/meuHistorico';
 import { pesquisaResultado } from './src/pesquisa';
-import { renderizarCarrinho } from './src/meuCarrinho';
-import javascriptLogo from './javascript.svg';
-import viteLogo from '/vite.svg';
-import { setupCounter } from './counter.js';
 
 //      declarando a onde vou colocar as informações, que no caso é roupas vendendo e a roupa em destaque
 const sectionRoupa = document.querySelector('.itens');
@@ -17,11 +13,16 @@ carregarBancoDeDados()
   .then(bd => {
     processBDData(bd);
     meuCarrinho(bd);
+    meuHistorico(bd);
   });
 
 
 //      aqui seria a main da para sacou ? onde tem o processo dos dados e onde são usados e puxados os dados do banco
 export function processBDData(bd) {
+
+  main.style.transition = '0.4s';
+  main.style.opacity = '1';
+
   console.log(bd);
 
   //      pelo fato de no banco estar o tipo de roupa no valor booleano, necessita de verificação
@@ -47,7 +48,7 @@ export function processBDData(bd) {
       <p class="destaDados">Marca: ${itemDestaque.marca}</p>
       <p class="destaDados">Tipo: ${tipo(itemDestaque.feminino)}</p>
       <div class="botaoCarr" id="botaoCarDestaque">
-      <button class="botao">Comprar</button>
+      <button class="botao" id="comprar${itemDestaque.id}">Comprar</button>
       <button id="addCarrinho${itemDestaque.id}">
         <img src="./assets/logo/addCarrinho.svg" class="carUser" alt="adicionar ao carrinho">
       </button>
@@ -73,7 +74,7 @@ export function processBDData(bd) {
           <p class="desDados">Tipo: ${tipo(element.feminino)}</p>
         </div>
         <div class="botaoCarr">
-        <button class="botao">Comprar</button>
+        <button class="botao" id="comprar${element.id}">Comprar</button>
         <button id="addCarrinho${element.id}">
           <img src="./assets/logo/addCarrinho.svg" class="carUser" alt="adicionar ao carrinho">
         </button>
@@ -91,9 +92,18 @@ export function processBDData(bd) {
     botaoAddCar.addEventListener('click', () => {
       adicionarAoCarrinho(element.id, bd);
     });
+
+    const compra = document.querySelector(`#comprar${element.id}`);
+    compra.addEventListener('click', () => {
+      adicionarAoCarrinho(element.id, bd);
+      finalizaComp();
+    });
   }
 
+
+
   meuCarrinho(bd);
+  meuHistorico(bd);
   pesquisaResultado(bd);
 
 }
