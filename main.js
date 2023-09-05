@@ -11,17 +11,15 @@ const sectionDestaque = document.querySelector('.destaque');
 // /////////////////////////// nome já diz carrega o banco
 carregarBancoDeDados()
   .then(bd => {
-    processBDData(bd);
+    main(bd);
     meuCarrinho(bd);
     meuHistorico(bd);
   });
 
 
 //      aqui seria a main da para sacou ? onde tem o processo dos dados e onde são usados e puxados os dados do banco
-export function processBDData(bd) {
+export function main(bd) {
 
-  main.style.transition = '0.4s';
-  main.style.opacity = '1';
 
   console.log(bd);
 
