@@ -1,8 +1,6 @@
-import { carregarBancoDeDados } from "../model/model.js";
-import { seTLocarStorage, geTLocalStorage } from "../model/model.js";
+import { seTLocarStorage, geTLocalStorage, carregarBancoDeDados } from "../public/model/model.js";
 
 const idsProdutoCarrinhoComQuantidade = geTLocalStorage("carrinho") ?? {};
-const Carrinho_Vazio = {};
 
 carregarBancoDeDados()
     .then(bd => {
