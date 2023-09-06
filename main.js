@@ -1,4 +1,3 @@
-import './style.css';
 import { carregarBancoDeDados } from './public/model/model';
 import { meuCarrinho, adicionarAoCarrinho , finalizaComp} from './src/meuCarrinho';
 import { meuHistorico } from './src/meuHistorico';
