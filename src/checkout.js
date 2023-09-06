@@ -1,4 +1,4 @@
-import { seTLocarStorage, geTLocalStorage, carregarBancoDeDados } from "../public/model/model.js";
+import { seTLocarStorage, geTLocalStorage, carregarBancoDeDados } from "../public/model/model.js"; 
 
 const idsProdutoCarrinhoComQuantidade = geTLocalStorage("carrinho") ?? {};
 
@@ -15,7 +15,7 @@ function compraFinal(bd) {
 
     const header = document.querySelector('#paginaInicial');
     header.addEventListener("click", () => {
-        window.location.href = "../index.html";
+        window.location.href = "./index.html";
     })
 
 
@@ -43,7 +43,7 @@ function compraFinal(bd) {
         main.style.opacity = "0";
         setTimeout(() => {
 
-            window.location.href = "../index.html";
+            window.location.href = "./index.html";
         }, 1500);
     })
 
