@@ -3,6 +3,9 @@ import { meuCarrinho, adicionarAoCarrinho , finalizaComp} from './src/meuCarrinh
 import { meuHistorico } from './src/meuHistorico';
 import { pesquisaResultado } from './src/pesquisa';
 
+
+
+console.log("bomdia");
 //      declarando a onde vou colocar as informações, que no caso é roupas vendendo e a roupa em destaque
 const sectionRoupa = document.querySelector('.itens');
 const sectionDestaque = document.querySelector('.destaque');
