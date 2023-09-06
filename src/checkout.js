@@ -15,7 +15,7 @@ function compraFinal(bd) {
 
     const header = document.querySelector('#paginaInicial');
     header.addEventListener("click", () => {
-        window.location.href = "./index.html";
+        window.location.href = "../index.html";
     })
 
 
