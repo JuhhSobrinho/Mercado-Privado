@@ -1,4 +1,4 @@
-import { adicionarAoCarrinho } from '../src/meuCarrinho';
+import { adicionarAoCarrinho } from '../src/meuCarrinho.js';
 
 export function pesquisaResultado(bd) {
     const pesquisa = document.querySelector('.lupaText');

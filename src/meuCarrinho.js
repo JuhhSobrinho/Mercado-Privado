@@ -1,4 +1,4 @@
-import { seTLocarStorage, geTLocalStorage } from "../public/model/model";
+import { seTLocarStorage, geTLocalStorage } from "../public/model/model.js";
 
 
 ////////// (??) operador de coalescência nula, caso GetLocalStorage seja nulo/sla primeir vez que abre o site, se sim ele ira executar como {}
