@@ -1,4 +1,4 @@
-import { carregarBancoDeDados } from './public/model/model.js';
+import { carregarBancoDeDados } from './model/model.js';
 import { meuCarrinho, adicionarAoCarrinho , finalizaComp} from './src/meuCarrinho.js';
 import { meuHistorico } from './src/meuHistorico.js';
 import { pesquisaResultado } from './src/pesquisa.js';
